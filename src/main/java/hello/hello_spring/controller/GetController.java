@@ -1,9 +1,6 @@
 package hello.hello_spring.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 // rest controller를 사용해서
 // 간단하게 외부의 요청을 받아 응답하는 기능을 구현
@@ -25,6 +22,12 @@ public class GetController {
     @GetMapping(value = "/name")
     public String getName(){
         return "mino";
+    }
+
+    // 2. @PathVariable 을 활용한 GET 메서드 구현
+    @GetMapping(value = "/variable1/{variable}")
+    public String getVariable1(@PathVariable String variable){
+        return variable;
     }
 
 }
