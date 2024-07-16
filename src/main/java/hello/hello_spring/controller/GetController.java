@@ -37,4 +37,14 @@ public class GetController {
         return var;
     }
 
+    // 4. @RequestParam을 활용한 GET 메서드 구현
+    @GetMapping(value = "request1")
+    public String getReuestParam1(
+        @RequestParam String name,
+        @RequestParam String email,
+        @RequestParam String organization
+        ){
+        return name+" "+email+" "+organization;
+    }
+
 }
