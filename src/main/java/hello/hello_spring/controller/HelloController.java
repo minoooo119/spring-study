@@ -5,6 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+//컨트롤러는 애초에 View를 반환하기 위해서 사용된다.
+//client 요청에 따라 View를 반환하게 된다.
+//Response Body 어노테이션을 활용해서 Json 형태로 데이터를 반환할 수 도 있다.
+
 @Controller
 public class HelloController {
 
