@@ -30,4 +30,11 @@ public class GetController {
         return variable;
     }
 
+    // 3. @PathVariable 에 변수명을 매핑하는 방법
+    // 2번 처럼 variable에 다른 변수 이름을 주고 싶을 때
+    @GetMapping(value = "/variable2/{variable}")
+    public String getVariable2(@PathVariable("variable") String var){
+        return var;
+    }
+
 }
