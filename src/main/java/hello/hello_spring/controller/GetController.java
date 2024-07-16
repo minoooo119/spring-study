@@ -2,6 +2,8 @@ package hello.hello_spring.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 // rest controller를 사용해서
 // 간단하게 외부의 요청을 받아 응답하는 기능을 구현
 
@@ -39,7 +41,7 @@ public class GetController {
 
     // 4. @RequestParam을 활용한 GET 메서드 구현
     @GetMapping(value = "request1")
-    public String getReuestParam1(
+    public String getRequestParam1(
         @RequestParam String name,
         @RequestParam String email,
         @RequestParam String organization
@@ -47,4 +49,13 @@ public class GetController {
         return name+" "+email+" "+organization;
     }
 
+    // 5. 어떤 Param이 올지 모른다 가정.
+    @GetMapping(value = "/request2")
+    public String getRequestParam2(@RequestParam Map<String,String> param){
+        StringBuilder sb=new StringBuilder();
+
+        param.forEach((key, value) -> sb.append(key).append(" : ").append(value).append("\n"));
+
+        return sb.toString();
+    }
 }
