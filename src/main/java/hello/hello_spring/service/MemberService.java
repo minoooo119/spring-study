@@ -3,6 +3,7 @@ package hello.hello_spring.service;
 import hello.hello_spring.domain.Member;
 import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMemberRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 // 커멘드 + 시프트 + T 를 통해 알아서 테스트 인터페이스 만들어줌.
 
 //@Service
+@Transactional //데이터를 저장하고 변경할때 이렇게 해줘야함
 public class MemberService {
 
     private final MemberRepository memberRepository; //= new MemoryMemberRepository();
