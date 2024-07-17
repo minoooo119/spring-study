@@ -24,12 +24,14 @@ class MemberServiceTest {
     MemberService service;
     MemoryMemberRepository memberRepository;
 
+    //테스트를 진행하기 직전에 매번 진행해주는 코드
     @BeforeEach
     public void beforeEach(){
-        // 이런 것을 DI -> dependency injection
+        // 이런 것을 DI -> dependency injection!! 이건 자세히 확인해야함
         memberRepository = new MemoryMemberRepository();
         service = new MemberService(memberRepository);
     }
+    //테스트를 진행하고 직후에 매번 진행해주는 코드
     @AfterEach
     public void afterEach(){
         memberRepository.clearStore();
