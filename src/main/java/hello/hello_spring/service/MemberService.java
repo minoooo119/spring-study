@@ -11,12 +11,12 @@ import java.util.Optional;
 
 // 커멘드 + 시프트 + T 를 통해 알아서 테스트 인터페이스 만들어줌.
 
-@Service
+//@Service
 public class MemberService {
 
     private final MemberRepository memberRepository; //= new MemoryMemberRepository();
 
-    @Autowired
+//    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
