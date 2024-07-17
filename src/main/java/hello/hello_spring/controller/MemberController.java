@@ -3,10 +3,13 @@ package hello.hello_spring.controller;
 import hello.hello_spring.domain.Member;
 import hello.hello_spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,9 +81,15 @@ public class MemberController {
     }
 
     @PostMapping("/members/login")
+    @ResponseBody
     public String login(MemberForm form){
         Optional<Member> result = memberService.findByName(form.getName());
-        return "redirect:/";
+        if(result.isPresent()){
+            return String.valueOf(ResponseEntity.ok("login  success"));
+        }else {
+            // Optional에 값이 없을 경우 해당 이름의 회원이 존재하지 않음을 클라이언트에게 알립니다.
+            return String.valueOf(ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 이름의 회원이 존재하지 않습니다."));
+        }
 
     }
     @GetMapping("/members/new")
