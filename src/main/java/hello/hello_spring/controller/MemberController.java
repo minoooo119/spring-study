@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 // 서비스를 통해 멤버를 가입하고 저장하게 된다.
 // 화면을 추가하고 싶다
@@ -71,7 +72,17 @@ public class MemberController {
         //memberController 가 호출되면 의존관계가 있는 memberService 를 컨테이너에서 찾아서 넣어준다.
         this.memberService = memberService;
     }
+    @GetMapping("/members/login")
+    public String loginForm(){
+        return "members/createLoginFrom";
+    }
 
+    @PostMapping("/members/login")
+    public String login(MemberForm form){
+        Optional<Member> result = memberService.findByName(form.getName());
+        return "redirect:/";
+
+    }
     @GetMapping("/members/new")
     public String createForm(){
         return "members/createMemberForm";
