@@ -15,11 +15,35 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class MemberController {
+    private final MemberService memberService;
+
+    // DI 관련 방법 3가지
+    // 1. 필드 주입 방법
+//     @Autowired private MemberService memberService;
+    // 별로 좋지 않은 방법이대.
+
+    // 2. Setter 주입 방법
+//    private MemberService memberService;
+//    public void setMemberService(MemberService memberService) {
+//        this.memberService = memberService;
+//    }
+    // 멤버 서비스를 누가 바꿔치지 할 수도.. public 하게 노출이 되므로 좋지않다.
+
+    // 3. Constructor 주입 방법
+//    @Autowired
+//    public MemberController(MemberService memberService) {
+//        this.memberService = memberService;
+//    }
+    // 이렇게 의존성을 주입하는 것이 가장 일반적이다.
+    // 생성 시점에만 주입하고 더 이상 수정 없도록 하는 것
+    // 동적으로 변하는 경우가 없기때문에 이렇게 하는 것이 좋다.
+
+
+
 //    private final MemberService memberService = new MemberService();
     //이렇게 new 로 새로운 객체를 생성하지 않고 공용으로 같이 쓰는게 좋음
     //스프링 컨테이너에 등록하고 가져와서 쓰는게 좋다.
 
-    private final MemberService memberService;
     // 'hello.hello_spring.service.MemberService' that could not be found.
     // 스프링이 찾을 수 있게 해야됨.
     // 별 다른 것을 해주지 않으면 그냥 자바 클래스 이므로 못 찾는다. @Service 추가 해줘야한다.
