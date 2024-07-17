@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Member {
 
     //DB 에서 자동으로 설정해주는 경우
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //DB가 알아서 생성해주는 것 = IDENTITY 라고 함
     private Long id;
 
 //    @Column(name = "username") 이런식으로 매핑을 해줄 수 있다.

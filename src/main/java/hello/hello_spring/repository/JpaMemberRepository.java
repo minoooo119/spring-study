@@ -14,7 +14,9 @@ public class JpaMemberRepository implements MemberRepository{
     // jpa 를 쓰려면 이 레포지토리에 em 을 주입받아야한다.
     private final EntityManager em;
 
+    //@Autowired 하면 알아서 의존성 연결이 되지만 spring config 에서 직접 넣어줄 수도 있다.
     public JpaMemberRepository(EntityManager em) {
+        // 생성자 의존성 주입 방법으로 주입
         this.em = em;
     }
 
