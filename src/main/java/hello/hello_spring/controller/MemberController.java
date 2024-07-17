@@ -1,8 +1,11 @@
 package hello.hello_spring.controller;
 
+import hello.hello_spring.domain.Member;
 import hello.hello_spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 // 서비스를 통해 멤버를 가입하고 저장하게 된다.
 // 화면을 추가하고 싶다
@@ -64,5 +67,21 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         //memberController 가 호출되면 의존관계가 있는 memberService 를 컨테이너에서 찾아서 넣어준다.
         this.memberService = memberService;
+    }
+
+    @GetMapping("/members/new")
+    public String createForm(){
+        return "members/createMemberForm";
+    }
+
+    @PostMapping("/members/new")
+    public String create(MemberForm form){//해당 객체에 맞게 저장이 된다.
+        Member member = new Member();
+        member.setName(form.getName());
+
+        memberService.join(member);
+
+        // redirect 해준다.
+        return "redirect:/";
     }
 }
