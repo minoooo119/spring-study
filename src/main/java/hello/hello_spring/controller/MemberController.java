@@ -4,8 +4,11 @@ import hello.hello_spring.domain.Member;
 import hello.hello_spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // 서비스를 통해 멤버를 가입하고 저장하게 된다.
 // 화면을 추가하고 싶다
@@ -76,12 +79,22 @@ public class MemberController {
 
     @PostMapping("/members/new")
     public String create(MemberForm form){//해당 객체에 맞게 저장이 된다.
+        // form 태그에 맞는 key 에 맞게 위 객체에 알맞게 값이 들어가게 된다.
+        // 그래서 변수도 잘 맞춰줘야한다.
         Member member = new Member();
         member.setName(form.getName());
 
+        System.out.println("member = " + member.getName());
         memberService.join(member);
 
         // redirect 해준다.
         return "redirect:/";
+    }
+
+    @GetMapping("/members")
+    public String list(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }
