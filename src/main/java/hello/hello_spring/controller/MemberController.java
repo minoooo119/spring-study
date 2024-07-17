@@ -38,6 +38,10 @@ public class MemberController {
     // 생성 시점에만 주입하고 더 이상 수정 없도록 하는 것
     // 동적으로 변하는 경우가 없기때문에 이렇게 하는 것이 좋다.
 
+    // 정형화된 컨트롤러, 서비스, 리포지토리 같은 코드는 컴포넌트 스캔을 사용한다.
+    // 정형화되지 않거나 구현 클래스를 변경해야하면 설정을 통해 스프링 빈으로 등록한다.
+
+    // ex) 리포지토리 관련해서 -> 인터페이스를 통해 다른 리포지토리로 변경할 때
 
 
 //    private final MemberService memberService = new MemberService();
